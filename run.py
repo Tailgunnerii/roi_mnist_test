@@ -176,9 +176,9 @@ def train():
 
 
 def main(_):
-  if tf.gfile.Exists(FLAGS.log_dir):
-    tf.gfile.DeleteRecursively(FLAGS.log_dir)
-  tf.gfile.MakeDirs(FLAGS.log_dir)
+  #if tf.gfile.Exists(FLAGS.log_dir):
+  #  tf.gfile.DeleteRecursively(FLAGS.log_dir)
+  #tf.gfile.MakeDirs(FLAGS.log_dir)
   train()
 
 
