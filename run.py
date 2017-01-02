@@ -39,6 +39,11 @@ def train():
                                     fake_data=FLAGS.fake_data)
 
   sess = tf.InteractiveSession()
+
+  # Create a saver
+
+  saver = tf.train.Saver()
+
   # Create a multilayer model.
 
   # Input placeholders
@@ -171,6 +176,11 @@ def train():
       else:  # Record a summary
         summary, _ = sess.run([merged, train_step], feed_dict=feed_dict(True))
         train_writer.add_summary(summary, i)
+
+  #Saving the model to output
+  save_path = saver.save(sess, FLAGS.log_dir)
+  print("Model saved in file: %s" % save_path)
+  
   train_writer.close()
   test_writer.close()
 
@@ -187,7 +197,7 @@ if __name__ == '__main__':
   parser.add_argument('--fake_data', nargs='?', const=True, type=bool,
                       default=False,
                       help='If true, uses fake data for unit testing.')
-  parser.add_argument('--max_steps', type=int, default=1000,
+  parser.add_argument('--max_steps', type=int, default=100, #1000,
                       help='Number of steps to run trainer.')
   parser.add_argument('--learning_rate', type=float, default=0.001,
                       help='Initial learning rate')
