@@ -42,7 +42,6 @@ def train():
 
   # Create a saver
 
-  saver = tf.train.Saver()
 
   # Create a multilayer model.
 
@@ -139,6 +138,8 @@ def train():
 
   # Merge all the summaries and write them out to /tmp/mnist_logs (by default)
   merged = tf.summary.merge_all()
+  saver = tf.train.Saver()
+
   train_writer = tf.summary.FileWriter(FLAGS.log_dir + '', sess.graph)
   test_writer = tf.summary.FileWriter(FLAGS.log_dir + '')
   tf.global_variables_initializer().run()
@@ -180,7 +181,7 @@ def train():
   #Saving the model to output
   save_path = saver.save(sess, FLAGS.log_dir)
   print("Model saved in file: %s" % save_path)
-  
+
   train_writer.close()
   test_writer.close()
 
