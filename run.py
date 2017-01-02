@@ -179,7 +179,7 @@ def train():
         train_writer.add_summary(summary, i)
 
   #Saving the model to output
-  save_path = saver.save(sess, FLAGS.log_dir)
+  save_path = saver.save(sess, FLAGS.log_dir+"/model.ckpt")
   print("Model saved in file: %s" % save_path)
 
   train_writer.close()
